@@ -8,3 +8,4 @@ edition = "2021"
 [dependencies]
 regex = "1"
 num-complex = "0.4.3"
+rayon = "1.7.0"
