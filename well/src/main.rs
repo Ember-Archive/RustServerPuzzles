@@ -1,4 +1,3 @@
-use num_complex::Complex;
 use welllib::*;
 
 fn main() {
@@ -9,30 +8,8 @@ fn main() {
         "7 7 15 16 46 1 38 43 44 25 10 7 6 34 42 14 8 19 9 21 13 23 22 32 11 29 36 3 5 47 31 33 45 24 12 18 28 40 41 20 26 39 48 2 49 35 27 4 37 30 17 26",
     ];
 
-    let four_dirs = |point: Complex<i32>| -> Vec<Complex<i32>> {
-        vec![
-            point + Complex::new(1, 0),
-            point + Complex::new(-1, 0),
-            point + Complex::new(0, 1),
-            point + Complex::new(0, -1),
-        ]
-    };
-    
-    let eight_dirs = |point: Complex<i32>| -> Vec<Complex<i32>> {
-        vec![
-            point + Complex::new(1, 0),
-            point + Complex::new(-1, 0),
-            point + Complex::new(0, 1),
-            point + Complex::new(0, -1),
-            point + Complex::new(1, 1),
-            point + Complex::new(-1, 1),
-            point + Complex::new(1, -1),
-            point + Complex::new(-1, -1),
-        ]
-    };
-
     println!("Answers for 4-directional neighbours");
-    calculate_result(inputs.clone(), four_dirs);
+    calculate_four(inputs.clone());
     println!("Answers for 8-directional neighbours");
-    calculate_result(inputs, eight_dirs);
+    calculate_eight(inputs);
 }

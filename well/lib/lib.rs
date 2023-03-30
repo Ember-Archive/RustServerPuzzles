@@ -56,13 +56,13 @@ where
     }
 }
 
-pub fn parse_ints(text: &str) -> Vec<i32> {
+fn parse_ints(text: &str) -> Vec<i32> {
     text.split_whitespace()
         .map(|s| s.parse().unwrap()) // turn the string into a vec of ints
         .collect()
 }
 
-pub fn build_wells(text: &str) -> (Vec<i32>, usize, i32) {
+fn build_wells(text: &str) -> (Vec<i32>, usize, i32) {
     let mut numbers: Vec<i32> = parse_ints(text); // parse the input text as a vector of i32s
 
     let _rows: i32 = numbers.remove(0); // we don't need the rows but it's part of the spec ¯\_(ツ)_/
@@ -74,7 +74,7 @@ pub fn build_wells(text: &str) -> (Vec<i32>, usize, i32) {
     (numbers, width, target) // return a tuple containing the numbers, width (number of columns) and target value
 }
 
-pub fn calculate_result<F>(inputs: Vec<&str>, directions_list: F)
+fn calculate_result<F>(inputs: Vec<&str>, directions_list: F)
 where
     F: Fn(Complex<i32>) -> Vec<Complex<i32>>  + Send + Sync, {
     inputs.par_iter().for_each(|input| { // iterate through the inputs
@@ -98,7 +98,7 @@ pub fn calculate_four(inputs: Vec<&str>) {
     calculate_result(inputs, four_dirs)
 }
 
-pub fn calulate_eight(inputs: Vec<&str>) {
+pub fn calculate_eight(inputs: Vec<&str>) {
     calculate_result(inputs, eight_dirs);
 }
 
