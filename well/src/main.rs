@@ -20,10 +20,10 @@ use num_complex::Complex;
              }
          }
      }
-     (squares.clone(), fill_rec(squares, target_pos, start_pos, directions_list))  // return a tuple containing a copy of the original squares and the result of calling fill_rec with the squares HashMap, target position, starting position, and directions
+     (squares.clone(), fill_step(squares, target_pos, start_pos, directions_list))  // return a tuple containing a copy of the original squares and the result of calling fill_rec with the squares HashMap, target position, starting position, and directions
  }
 
-fn fill_rec<F>(mut squares: HashMap<Complex<i32>, i32>, target_pos: Complex<i32>, start_pos: Complex<i32>, directions_list: F) -> HashMap<Complex<i32>, i32>
+fn fill_step<F>(mut squares: HashMap<Complex<i32>, i32>, target_pos: Complex<i32>, start_pos: Complex<i32>, directions_list: F) -> HashMap<Complex<i32>, i32>
 where
     F: Fn(Complex<i32>) -> Vec<Complex<i32>>, {
     let mut filled: HashSet<Complex<i32>> = vec![start_pos].into_iter().collect::<HashSet<_>>();  // initialize a HashSet with the starting position
@@ -45,7 +45,7 @@ where
             if !boundary.is_empty() {  // if there are boundary cells
                 if boundary.iter().any(|&position| squares[&position] < level) {  // if there is a boundary cell with a lower level than the current level
                     let lowest: Complex<i32> = boundary.into_iter().min_by_key(|&position| squares[&position]).unwrap();  // find the boundary cell with the lowest level
-                    return fill_rec(squares.clone(), target_pos, lowest, directions_list);  // recursively call fill_rec with the lowest boundary cell as the new starting position
+                    return fill_step(squares.clone(), target_pos, lowest, directions_list);  // recursively call fill_rec with the lowest boundary cell as the new starting position
                 }
                 filled.extend(boundary);  // add the boundary cells to the filled set
             } else {
