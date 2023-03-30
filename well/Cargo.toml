@@ -4,8 +4,21 @@ version = "0.1.0"
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[[bin]]
+name = "well"
+path = "src/main.rs"
+
+[lib]
+name = "welllib"
+path = "lib/lib.rs"
+
+
+[[bench]]
+name = "my_benchmark"
+harness = false
 
 [dependencies]
 regex = "1"
 num-complex = "0.4.3"
 rayon = "1.7.0"
+criterion = { version = "0.4", features = ["html_reports"] }

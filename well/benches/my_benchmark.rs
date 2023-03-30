@@ -1,7 +1,8 @@
+use criterion::{BenchmarkId, criterion_group, criterion_main, Criterion};
 use num_complex::Complex;
-use welllib::*;
+use welllib;
 
-fn main() {
+pub fn criterion_benchmark(c: &mut Criterion) {
     let inputs: Vec<&str> = vec![ // too lazy to do user input lmao
         "3 3 1 9 6 2 8 5 3 7 4 4",
         "3 3 8 3 2 7 1 5 4 9 6 4",
@@ -31,8 +32,12 @@ fn main() {
         ]
     };
 
-    println!("Answers for 4-directional neighbours");
-    calculate_result(inputs.clone(), four_dirs);
-    println!("Answers for 8-directional neighbours");
-    calculate_result(inputs, eight_dirs);
+    c.bench_with_input(BenchmarkId::new("test", "my cool test"), &inputs, |b, i| {
+        b.iter(|| welllib::calculate_result(i.to_vec(), four_dirs));
+        b.iter(|| welllib::calculate_result(i.to_vec(), eight_dirs));
+    });
 }
+
+
+criterion_group!(benches, criterion_benchmark);
+criterion_main!(benches);
