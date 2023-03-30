@@ -1,5 +1,4 @@
 use criterion::{BenchmarkId, criterion_group, criterion_main, Criterion};
-use num_complex::Complex;
 use welllib;
 
 pub fn criterion_benchmark(c: &mut Criterion) {
@@ -10,31 +9,8 @@ pub fn criterion_benchmark(c: &mut Criterion) {
         "7 7 15 16 46 1 38 43 44 25 10 7 6 34 42 14 8 19 9 21 13 23 22 32 11 29 36 3 5 47 31 33 45 24 12 18 28 40 41 20 26 39 48 2 49 35 27 4 37 30 17 26",
     ];
 
-    let four_dirs = |point: Complex<i32>| -> Vec<Complex<i32>> {
-        vec![
-            point + Complex::new(1, 0),
-            point + Complex::new(-1, 0),
-            point + Complex::new(0, 1),
-            point + Complex::new(0, -1),
-        ]
-    };
-    
-    let eight_dirs = |point: Complex<i32>| -> Vec<Complex<i32>> {
-        vec![
-            point + Complex::new(1, 0),
-            point + Complex::new(-1, 0),
-            point + Complex::new(0, 1),
-            point + Complex::new(0, -1),
-            point + Complex::new(1, 1),
-            point + Complex::new(-1, 1),
-            point + Complex::new(1, -1),
-            point + Complex::new(-1, -1),
-        ]
-    };
-
     c.bench_with_input(BenchmarkId::new("test", "my cool test"), &inputs, |b, i| {
-        b.iter(|| welllib::calculate_result(i.to_vec(), four_dirs));
-        b.iter(|| welllib::calculate_result(i.to_vec(), eight_dirs));
+        b.iter(|| welllib::calculate_both(i.to_vec()));
     });
 }
 

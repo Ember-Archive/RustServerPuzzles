@@ -93,3 +93,38 @@ where
         println!("{}", total);
     });
 }
+
+pub fn calculate_four(inputs: Vec<&str>) {
+    calculate_result(inputs, four_dirs)
+}
+
+pub fn calulate_eight(inputs: Vec<&str>) {
+    calculate_result(inputs, eight_dirs);
+}
+
+pub fn calculate_both(inputs: Vec<&str>) {
+    calculate_result(inputs.clone(), four_dirs);
+    calculate_result(inputs, eight_dirs)
+}
+
+fn four_dirs(point: Complex<i32>) -> Vec<Complex<i32>> {
+    vec![
+        point + Complex::new(1, 0),
+        point + Complex::new(-1, 0),
+        point + Complex::new(0, 1),
+        point + Complex::new(0, -1),
+    ]
+}
+
+fn eight_dirs(point: Complex<i32>) -> Vec<Complex<i32>> {
+    vec![
+        point + Complex::new(1, 0),
+        point + Complex::new(-1, 0),
+        point + Complex::new(0, 1),
+        point + Complex::new(0, -1),
+        point + Complex::new(1, 1),
+        point + Complex::new(-1, 1),
+        point + Complex::new(1, -1),
+        point + Complex::new(-1, -1),
+    ]
+}
