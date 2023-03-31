@@ -1,6 +1,6 @@
-Well, Well, Well
+# Well, Well, Well #
 
-Description
+## Description ##
 
 A square well is dug with a peculiar shape: each 1x1 section has varying heights above some floor. You wish to fill the well with water, filling from a hose above the square marked 1. Square 1 is the lowest (think of this as a heightmap in units from the bottom). Water flows at 1 cubic unit per unit time (e.g. 1 liter per minute if you want specific units). You wish to know when you fill a specific square.
 
@@ -24,7 +24,7 @@ You'll be given a row with two numbers, N and N, telling you the dimensions of t
 4
 
 
-Output Description
+## Output Description ##
 
 Your program should emit the time unit at which time the target square is covered in one cubic unit of water.
 
@@ -32,7 +32,7 @@ The above example's answer should be 16.
 
 Explanation: In this case the column 9 8 7 forms a barrier from the 1 square to the 4 square, our target. As such you have to fill enough to get to a height of 7 to begin filling 4. (7-1) + (7-2) + (7-3) [all to get over the barrier] + 1 [to fill the four block].
 
-Challenge Input
+## Challenge Input ##
 
 7 7
 
