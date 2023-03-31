@@ -44,14 +44,18 @@ thepackagehasbeendelivered
 
 
 Then, write the keyword, (for example, snitch), repeated as many times as necessary.
+```
 snitchsnitchsnitchsnitchsn
 thepackagehasbeendelivered
+```
 
 
 Now you can look up the column S in the table and follow it down until it meets the T row. The value at the intersection is the letter L. All the letters would be thus encoded.
+```
 snitchsnitchsnitchsnitchsn
 thepackagehasbeendelivered
 lumicjcnoxjhkomxpkwyqogywq
+```
 
 
 The encoded message is now lumicjcnoxjhkomxpkwyqogywq
@@ -61,17 +65,23 @@ To decode, the other person would use the secret keyword and the table to look u
 ## Input Description ##
 
 Each input will consist of two strings, separate by a space. The first word will be the secret word, and the second will be the message to encrypt.
+```
 snitch thepackagehasbeendelivered
+```
 
 
 ## Output Description ##
 
 Your program should print out the encrypted message.
+```
 lumicjcnoxjhkomxpkwyqogywq
+```
 
 
 ## Challenge Inputs ##
 
+```
 bond theredfoxtrotsquietlyatmidnight
 train murderontheorientexpress
 garden themolessnuckintothegardenlastnight
+```
