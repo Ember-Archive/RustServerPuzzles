@@ -95,15 +95,19 @@ where
 }
 
 pub fn calculate_four(inputs: Vec<&str>) {
+    println!("Answers for 4-directional neighbours");
     calculate_result(inputs, four_dirs)
 }
 
 pub fn calculate_eight(inputs: Vec<&str>) {
+    println!("Answers for 8-directional neighbours");
     calculate_result(inputs, eight_dirs);
 }
 
 pub fn calculate_both(inputs: Vec<&str>) {
+    println!("Answers for 4-directional neighbours");
     calculate_result(inputs.clone(), four_dirs);
+    println!("Answers for 8-directional neighbours");
     calculate_result(inputs, eight_dirs)
 }
 
