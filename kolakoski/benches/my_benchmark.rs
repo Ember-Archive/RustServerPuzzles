@@ -2,10 +2,10 @@ use criterion::{BenchmarkId, criterion_group, criterion_main, Criterion};
 use kolakoskilib;
 
 pub fn criterion_benchmark(c: &mut Criterion) {
-    let inputs = vec![10, 100, 1000, 10000, 1000000];
+    let input = 100000000;
 
-    c.bench_with_input(BenchmarkId::new("test", "my cool test"), &inputs, |b, i| {
-        b.iter(|| kolakoskilib::calc_kolakoski(i.to_vec()));
+    c.bench_with_input(BenchmarkId::new("test", "my cool test"), &input, |b, i| {
+        b.iter(|| kolakoskilib::kolakoski_ratio_nilsson(*i));
     });
 }
 
