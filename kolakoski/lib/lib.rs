@@ -2,7 +2,7 @@ use rayon::prelude::*;
 
 pub fn calc_kolakoski(inputs: Vec<usize>) {
     inputs
-        .par_iter() // Use parallel iterator from Rayon
+        .par_iter()
         .for_each(|&n| {
             let result = kolakoski_ratio_nilsson(n);
             println!("Input {}: {}", n, result);

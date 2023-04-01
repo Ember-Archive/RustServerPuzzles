@@ -1,4 +1,4 @@
-use criterion::{BenchmarkId, criterion_group, criterion_main, Criterion};
+use criterion::{BenchmarkId, Criterion};
 use kolakoskilib;
 
 pub fn criterion_benchmark(c: &mut Criterion) {
@@ -12,7 +12,7 @@ pub fn criterion_benchmark(c: &mut Criterion) {
 fn main() {
     let mut criterion = Criterion::default()
         .warm_up_time(std::time::Duration::from_secs(3))
-        .measurement_time(std::time::Duration::from_secs(11))
+        .measurement_time(std::time::Duration::from_secs(80))
         .nresamples(20000)
         .significance_level(0.01)
         .noise_threshold(0.02)
