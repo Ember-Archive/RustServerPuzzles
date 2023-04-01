@@ -1,14 +1,14 @@
 [package]
-name = "well"
+name = "kolakoski"
 version = "0.1.0"
 edition = "2021"
 
 [[bin]]
-name = "well"
+name = "kolakoski"
 path = "src/main.rs"
 
 [lib]
-name = "welllib"
+name = "kolakoskilib"
 path = "lib/lib.rs"
 
 [[bench]]
@@ -16,7 +16,5 @@ name = "my_benchmark"
 harness = false
 
 [dependencies]
-regex = "1"
-num-complex = "0.4.3"
-rayon = "1.7.0"
+rayon = "1.5.1"
 criterion = { version = "0.4", features = ["html_reports"] }
