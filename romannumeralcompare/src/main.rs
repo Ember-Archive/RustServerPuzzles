@@ -1,55 +1,52 @@
+fn roman_to_int(roman: &str) -> i32 {
+    let mut total = 0;
+    let mut prev_value = 0;
+
+    let value = |c| {
+        match c {
+            'M' => 1000,
+            'D' => 500,
+            'C' => 100,
+            'L' => 50,
+            'X' => 10,
+            'V' => 5,
+            'I' => 1,
+            _ => 0,
+        }
+    };
+
+    for c in roman.chars().rev() {
+        let current_value = value(c);
+        if current_value < prev_value {
+            total -= current_value;
+        } else {
+            total += current_value;
+        }
+        prev_value = current_value;
+    }
+
+    total
+}
+
 fn compare_roman_numerals(input: &[(String, String)]) -> Vec<bool> {
-    let roman_order: [char; 7] = ['M', 'D', 'C', 'L', 'X', 'V', 'I'];
-
     input
-        .iter()
-        .map(|(r1, r2)| {
-            let mut r1_iter = r1.chars().peekable();
-            let mut r2_iter = r2.chars().peekable();
-
-            loop {
-                let r1_char = r1_iter.peek();
-                let r2_char = r2_iter.peek();
-
-                match (r1_char, r2_char) {
-                    (Some(c1), Some(c2)) => {
-                        if c1 == c2 {
-                            r1_iter.next();
-                            r2_iter.next();
-                        } else {
-                            let c1_index = roman_order.iter().position(|&c| c == *c1).unwrap();
-                            let c2_index = roman_order.iter().position(|&c| c == *c2).unwrap();
-                            return c1_index > c2_index;
-                        }
-                    }
-                    (Some(_), None) => return false,
-                    (None, Some(_)) => return true,
-                    (None, None) => return false,
-                }
-            }
-        })
+        .into_iter()
+        .map(|(r1, r2)| roman_to_int(&r1) > roman_to_int(&r2)) // Change '<' to '>'
         .collect()
 }
 
 fn main() {
     let roman_numerals = vec![
         (String::from("I"), String::from("I")),
+        (String::from("II"), String::from("I")),
         (String::from("I"), String::from("II")),
-        (String::from("II"), String::from("II")),
-        (String::from("V"), String::from("IV")),
-        (String::from("MDCLXV"), String::from("MDCLXVI")),
-        (String::from("MM"), String::from("MMCCCCLXXXXIV")),
+        (String::from("IV"), String::from("III")),
+        (String::from("MMM"), String::from("MMCCCCLXXXXIV")),
+        (String::from("MMMCCCLXXXIV"), String::from("MMCCCCLXXXXIV")),
         (String::from("MMMMMCCCCLXXXIV"), String::from("MMCCCCLXXXXIV")),
     ];
     let results = compare_roman_numerals(&roman_numerals);
-    for ((r1, r2), result) in roman_numerals.iter().zip(results) {
+    for ((r1, r2), result) in roman_numerals.iter().zip(&results) {
         println!("{} > {}: {}", r1, r2, result);
     }
 }
-
-/*numcompare("I", "I") => false
-numcompare("I", "II") => true
-numcompare("II", "I") => false
-numcompare("V", "IIII") => false
-numcompare("MDCLXV", "MDCLXVI") => true
-numcompare("MM", "MDCCCCLXXXXVIIII") => false */
